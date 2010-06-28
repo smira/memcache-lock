@@ -24,8 +24,8 @@ class MemcacheLock
   def acquire_lock(key, lock_expiry = DEFAULT_EXPIRY, retries = DEFAULT_RETRY)
     retries.times do |count|
       begin
-        response = @cache.add("lock/#{key}", Process.pid, lock_expiry)
-        return if response == "STORED\r\n"
+        response = @cache.write("lock/#{key}", Process.pid, :expires_in => lock_expiry, :unless_exist => true)
+        return if response
         raise Error if count == retries - 1
       end
       exponential_sleep(count) unless count == retries - 1
@@ -43,7 +43,7 @@ class MemcacheLock
 
   private
   def recursive_lock?(key)
-    @cache.get("lock/#{key}") == Process.pid
+    @cache.read("lock/#{key}") == Process.pid
   end
 end
 

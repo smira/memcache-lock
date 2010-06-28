@@ -4,13 +4,14 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "memcache-lock"
-    gem.summary = %Q{Memcache key lock, extracted from cache-money.}
-    gem.description = %Q{Memcache key lock, extracted from cache-money.}
-    gem.email = "james@giraffesoft.ca"
-    gem.homepage = "http://github.com/giraffesoft/memcache-lock"
-    gem.authors = ["James Golick"]
+    gem.name = "smira-memcache-lock"
+    gem.summary = %Q{Memcache key lock, extracted from cache-money, adapted to Rails memcache store.}
+    gem.description = %Q{Memcache key lock, extracted from cache-money, adapted to Rails memcache store.}
+    gem.email = "me@smira.ru"
+    gem.homepage = "http://github.com/smira/memcache-lock"
+    gem.authors = ["Andrey Smirnov"]
     gem.add_development_dependency "rspec"
+    gem.add_dependency "activesupport", ">= 2.3.5"
     gem.add_dependency "memcache-client", ">= 1.7.4"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
