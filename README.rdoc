@@ -10,10 +10,9 @@ This is a pure extraction from Nick Kallen's {cache-money}[http://github.com/nka
 
 = Usage
 
-Instantiate the lock somewhere, like in an initializer if you're using rails. It needs a MemCache instance.
+Instantiate the lock somewhere, like in an initializer if you're using rails. It will be using Rails.cache by default.
 
-  $cache = MemCache.new(YAML.load(File.read("/path/to/memcache/config")))
-  $lock  = MemcacheLock.new($cache)
+  $lock  = MemcacheLock.new()
 
 Then, wherever you'd like to lock a key, use it like this:
 

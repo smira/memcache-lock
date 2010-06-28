@@ -5,7 +5,7 @@ class MemcacheLock
   DEFAULT_EXPIRY = 30
 
   def initialize(cache)
-    @cache = cache
+    @cache = cache || Rails.cache
   end
 
   def synchronize(key, lock_expiry = DEFAULT_EXPIRY, retries = DEFAULT_RETRY)
